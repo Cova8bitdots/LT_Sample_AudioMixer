@@ -1,5 +1,40 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0bb44066c0dc03bf6c56febb858250c50ce97771"
+    },
+    "com.littlebigfun.addressable-importer": {
+      "version": "https://github.com/favoyang/unity-addressable-importer.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.addressables": "1.1.5"
+      },
+      "hash": "4e69be0cf054abee0a06264577ac7b72abe7191d"
+    },
+    "com.neuecc.unirx": {
+      "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
+    },
+    "com.unity.addressables": {
+      "version": "1.11.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.8.6",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
@@ -26,6 +61,29 @@
     "com.unity.ide.vscode": {
       "version": "1.2.1",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.probuilder": {
+      "version": "4.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.8.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.settings-manager": {
+      "version": "1.0.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -64,6 +122,20 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0"
       }
+    },
+    "dev.covatech.editortool-extention": {
+      "version": "https://github.com/Cova8bitdots/UnityEditorToolExtention.git?path=CovaTechLib",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c311a793a2e279361a798df099fc17467883ebc8"
+    },
+    "dev.covatech.unitysound": {
+      "version": "https://github.com/Cova8bitdots/UnitySound.git?path=UnitySound",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "12df4c918fbc939bbbf9dcf50d1915add32bc1b2"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
