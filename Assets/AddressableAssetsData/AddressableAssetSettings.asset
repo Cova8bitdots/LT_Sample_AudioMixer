@@ -40,9 +40,9 @@ MonoBehaviour:
       - m_Id: d552bff6560af4090ada13ccc7b8e8f4
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 6386b774789224957a421c3d4042df26
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+        m_Value: Assets/StreamingAssets/[BuildTarget]
       - m_Id: fd2301bf18d874e0997d3c18b6c10ab8
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+        m_Value: '[Application.streamingAssetsPath]/[BuildTarget]'
       - m_Id: 244985943499c47208e819b9156d02b6
         m_Value: ServerData/[BuildTarget]
       - m_Id: 5a45ab5b1e9d04508a39ed914a3e8bef

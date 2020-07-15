@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: c5bea8cedf0084131bb140bda4d09ba2
   m_SerializeEntries:
   - m_GUID: a6c93a95d26b94416a864a2780d28879
-    m_Address: BGM_20001
+    m_Address: bgm_20001
     m_ReadOnly: 0
     m_SerializedLabels:
     - BGM_DIEGETIC
