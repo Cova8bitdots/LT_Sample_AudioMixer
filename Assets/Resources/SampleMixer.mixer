@@ -225,6 +225,10 @@ AudioMixerController:
     name: BGM_MASTER_VOLUME
   - guid: 38146f28cb9d64e01b51f905e220a68a
     name: BGM_DIEGETIC_VOLUME
+  - guid: 32458d5e01dba46e1b30ac6f58b9f227
+    name: DIEGETIC_BGM_HPF
+  - guid: e993b1e07c280401fafe7724ca317541
+    name: DIEGETIC_BGM_LPF
   - guid: e3d9281a5a4b84313a3cecce0987991f
     name: SE_DIEGETIC_VOLUME
   - guid: d23da396cf9f04413ab33803d7f0ab20
@@ -258,7 +262,7 @@ AudioMixerController:
     - 687de05e48a0c43dc843f31e8a2c40e7
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -8189827978374657137}
+  m_TargetSnapshot: {fileID: 7166684104446226708}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -487,10 +491,12 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 1c403c50db63244cd90a3f5d67eaea45
   m_FloatValues:
+    e993b1e07c280401fafe7724ca317541: 22000
     cbba44c198bcf4affb565973fbdf07fe: -20
     d23da396cf9f04413ab33803d7f0ab20: -80
-    38146f28cb9d64e01b51f905e220a68a: -80
+    38146f28cb9d64e01b51f905e220a68a: 0.025578514
     e3d9281a5a4b84313a3cecce0987991f: -80
+    32458d5e01dba46e1b30ac6f58b9f227: 10
   m_TransitionOverrides: {}
 --- !u!243 &7999982560214498937
 AudioMixerGroupController:
