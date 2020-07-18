@@ -91,7 +91,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_soundItemsPrefab
       value: 
-      objectReference: {fileID: 2975757160250771229, guid: 8edd517fa692a4963a01a2789978f911,
+      objectReference: {fileID: 20053439473982391, guid: ea2d1a2ad4b2242608cdddf52536907d,
         type: 3}
     - target: {fileID: 6550388675164976792, guid: b60419970f5ed4452b475b7de8a9e06d,
         type: 3}

@@ -10,6 +10,16 @@ namespace CovaTech.LT.AudioMixerSample
     public class AutomaticDoor : MonoBehaviour
     {
         //------------------------------------------------------------------
+        // 定数関連
+        //------------------------------------------------------------------
+        #region  ===== CONSTS =====
+        private const float NORMALIZED_FREQ_MAX = 1.0f;
+        private const float NORMALIZED_FREQ_MIN = 0.13f;
+
+        #endregion //) ===== CONSTS =====
+        
+
+        //------------------------------------------------------------------
         // メンバ変数関連
         //------------------------------------------------------------------
         #region  ===== MEMBER_VARIABLES =====
@@ -20,12 +30,10 @@ namespace CovaTech.LT.AudioMixerSample
         [SerializeField, Range( -360.0f, 360.0f)]
         private float m_rotAngle =0.0f;
 
-        private IAudioPlayer m_audioPlayer = null;
         private IMixerEffectController m_effectCtrl = null;
 
         private Coroutine m_doorAnimCoroutine = null;
 
-        private int m_bgmHandler = SoundConsts.INVALID_HANDLER;
         #endregion //) ===== MEMBER_VARIABLES =====
         
 
@@ -35,31 +43,17 @@ namespace CovaTech.LT.AudioMixerSample
         #region ===== INITIALIZE =====
 
         [Inject]
-        public void Initialize( IAudioPlayer _audioPlayer, IMixerEffectController _mixerEffectCtrl )
+        public void Initialize( IMixerEffectController _mixerEffectCtrl )
         {
-            Debug.Assert( _audioPlayer != null);
             Debug.Assert( _mixerEffectCtrl != null);
-            m_audioPlayer = _audioPlayer;
             m_effectCtrl = _mixerEffectCtrl;
         }
 
-        private async void Start()
+        private void Start()
         {
-            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, 0.0f);
-            if( m_audioPlayer != null )
-            {
-                m_bgmHandler =  await m_audioPlayer.PlayBgm( (int)BGM_ID.SAMPLE_BGM, 1.0f, true, new System.Threading.CancellationToken() );
-            }
+            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(0.0f) );
         }
         #endregion //) ===== INITIALIZE =====
-
-        private void OnDestroy()
-        {
-            if( m_audioPlayer != null && m_bgmHandler != SoundConsts.INVALID_HANDLER )
-            {
-                m_audioPlayer.StopBGM( m_bgmHandler, true, new System.Threading.CancellationToken() ).Forget( e => Debug.LogError(e.Message));
-            }
-        }
 
 
         private void OnTriggerEnter()
@@ -83,6 +77,16 @@ namespace CovaTech.LT.AudioMixerSample
             
         }
 
+        /// <summary>
+        /// 指定範囲内の正規化周波数を計算して返す
+        /// </summary>
+        /// <param name="ratio"></param>
+        /// <returns></returns>
+        private float CalcFreq( float ratio)
+        {
+            return (NORMALIZED_FREQ_MAX- NORMALIZED_FREQ_MIN) * ratio + NORMALIZED_FREQ_MIN;
+        }
+
 
 
 
@@ -99,11 +103,11 @@ namespace CovaTech.LT.AudioMixerSample
             {
                 float ratio = Mathf.Clamp01(t / m_animTime);
                 m_doorObject.localRotation = Quaternion.Lerp( currentRotation, targetRotation, ratio);
-                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, ratio);
+                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(ratio) );
                 yield return null;
             }
             m_doorObject.localRotation = targetRotation;
-            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, 1.0f);
+            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(1.0f));
 
 
             yield return null;
@@ -122,13 +126,13 @@ namespace CovaTech.LT.AudioMixerSample
             {
                 float ratio = Mathf.Clamp01(t / m_animTime);
                 m_doorObject.localRotation = Quaternion.Lerp( currentRotation, targetRotation, ratio);
-                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, 1.0f - ratio);
+                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(1.0f- ratio) );
                 yield return null;
             }
             m_doorObject.localRotation = targetRotation;
 
             m_doorObject.localRotation = Quaternion.Euler( Vector3.zero);
-            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, 0.0f);
+            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM,CalcFreq( 0.0f) );
 
         }
     }
