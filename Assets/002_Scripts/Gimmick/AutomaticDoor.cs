@@ -14,7 +14,7 @@ namespace CovaTech.LT.AudioMixerSample
         //------------------------------------------------------------------
         #region  ===== CONSTS =====
         private const float NORMALIZED_FREQ_MAX = 1.0f;
-        private const float NORMALIZED_FREQ_MIN = 0.13f;
+        private const float NORMALIZED_FREQ_MIN = 0.01360f; // 300Hz
 
         #endregion //) ===== CONSTS =====
         
@@ -29,6 +29,10 @@ namespace CovaTech.LT.AudioMixerSample
         private float m_animTime =1.0f;
         [SerializeField, Range( -360.0f, 360.0f)]
         private float m_rotAngle =0.0f;
+
+        [SerializeField]
+        private RoomArea m_roomArea = null;
+        private IAreaController m_areaCtrl = null;
 
         private IMixerEffectController m_effectCtrl = null;
 
@@ -51,6 +55,7 @@ namespace CovaTech.LT.AudioMixerSample
 
         private void Start()
         {
+            m_areaCtrl = m_roomArea;
             m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(0.0f) );
         }
         #endregion //) ===== INITIALIZE =====
@@ -87,8 +92,13 @@ namespace CovaTech.LT.AudioMixerSample
             return (NORMALIZED_FREQ_MAX- NORMALIZED_FREQ_MIN) * ratio + NORMALIZED_FREQ_MIN;
         }
 
-
-
+        private void SetLowPassEffect( float ratio )
+        {
+            if( m_areaCtrl != null && m_areaCtrl.IsOutSide() )
+            {
+                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, ratio );
+            }       
+        }
 
         private IEnumerator OpenDoorAnimation()
         {
@@ -103,12 +113,12 @@ namespace CovaTech.LT.AudioMixerSample
             {
                 float ratio = Mathf.Clamp01(t / m_animTime);
                 m_doorObject.localRotation = Quaternion.Lerp( currentRotation, targetRotation, ratio);
-                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(ratio) );
+
+                SetLowPassEffect( CalcFreq(ratio) );
                 yield return null;
             }
             m_doorObject.localRotation = targetRotation;
-            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(1.0f));
-
+            SetLowPassEffect( CalcFreq(1.0f) );
 
             yield return null;
         }
@@ -126,13 +136,14 @@ namespace CovaTech.LT.AudioMixerSample
             {
                 float ratio = Mathf.Clamp01(t / m_animTime);
                 m_doorObject.localRotation = Quaternion.Lerp( currentRotation, targetRotation, ratio);
-                m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM, CalcFreq(1.0f- ratio) );
+                SetLowPassEffect( CalcFreq(1.0f- ratio) );
+
                 yield return null;
             }
             m_doorObject.localRotation = targetRotation;
 
             m_doorObject.localRotation = Quaternion.Euler( Vector3.zero);
-            m_effectCtrl?.SetLowPassFilter( SOUND_CATEGORY.DIEGETIC_BGM,CalcFreq( 0.0f) );
+            SetLowPassEffect( CalcFreq(0.0f) );
 
         }
     }
