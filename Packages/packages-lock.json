@@ -66,11 +66,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.probuilder": {
-      "version": "4.2.3",
+      "version": "4.5.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.settings-manager": "1.0.0"
+        "com.unity.settings-manager": "1.0.3"
       },
       "url": "https://packages.unity.com"
     },
@@ -82,7 +82,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.settings-manager": {
-      "version": "1.0.0",
+      "version": "1.0.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -141,7 +141,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "98e973204fc7b0e99a0eccd7fcbd7408aa421611"
+      "hash": "a662126f06c87a92066ee26fa77106f352296ec9"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
