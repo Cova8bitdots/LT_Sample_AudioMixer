@@ -11,7 +11,7 @@ AudioMixerを用いたサウンド周りの開発のサンプルです
 # 環境
 |項目 | 設定 |
 | --- | --- |
-| Unity | Unity2019.4.1f1 (LTS) |
+| Unity | Unity2019.4.1f1 ~ Unity2019.4.25f1 |
 | OSX | MacOS (Addressables をビルドすればWindows でも可能)
 
 ## Plugins
